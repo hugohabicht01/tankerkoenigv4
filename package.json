@@ -16,6 +16,7 @@
   "scripts": {
     "test": "NODE_OPTIONS=--experimental-vm-modules jest",
     "build": "tsc",
+    "prepublish": "npm run build",
     "refreshInterfaces": "curl https://creativecommons.tankerkoenig.de/swagger/tankerkoenig.yaml -o tankerkoenig.yaml && npx -y openapi-typescript --output schema.ts"
   },
   "author": "",
