@@ -1,6 +1,6 @@
-import fetch from 'node-fetch';
-import { ErrorAPIBadRequest, ErrorAPIInternalServerError, ErrorAPINotFound, ErrorAPIServiceUnavailable, ErrorAPIUnauthorizedRequest, ErrorAPIKeyMissing, ErrorAPIGenericError } from './errors';
-import { APIBadRequest, APIInternalServerError, APIServiceUnavailable, APIUnauthorizedRequest, fetchOptions, IdsOptions, IdsResult, PostalcodeOptions, PostalcodeResult, CoordinatesOptions, StatsOptions, StatsResult, CoordinatesResult, ComplaintOptions, ComplaintResult } from './types';
+import { ErrorAPIKeyMissing } from './errors';
+import { fetchOptions, IdsOptions, IdsResult, PostalcodeOptions, PostalcodeResult, CoordinatesOptions, StatsOptions, StatsResult, CoordinatesResult, ComplaintOptions, ComplaintResult } from './types';
+import { $fetch } from 'ohmyfetch';
 
 const BASEURL = 'https://creativecommons.tankerkoenig.de/api/v4';
 
@@ -33,52 +33,18 @@ const fetchAPI = (options: fetchOptions) => {
   if (!query) {
     query = {}
   }
+  query.apikey = apikey;
 
   if (method === 'POST') {
     body = { ...body, apikey: apikey }
   }
 
-  const url = new URL(path, baseurl);
-  query.apikey = apikey;
-  const params = new URLSearchParams(query);
-  url.search = params.toString();
-
-  const stringifiedBody = JSON.stringify(body);
-  return fetch(url.toString(), {
-    body: stringifiedBody,
+  return $fetch(path, {
     method,
-    headers: {
-      'Content-Type': 'application/json'
-    }
+    body,
+    baseURL: baseurl,
+    params: query,
   })
-    .then(async res => {
-      if (!res.ok) {
-        switch (res.status) {
-          case 400: {
-            const response = await res.json() as APIBadRequest;
-            throw new ErrorAPIBadRequest(response.code, response.message);
-          }
-          case 401: {
-            const response = await res.json() as APIUnauthorizedRequest;
-            throw new ErrorAPIUnauthorizedRequest(response.code, response.message);
-          }
-          case 404: {
-            throw new ErrorAPINotFound();
-          }
-          case 500: {
-            const response = await res.json() as APIInternalServerError;
-            throw new ErrorAPIInternalServerError(response.code, response.message);
-          }
-          case 503: {
-            const response = await res.json() as APIServiceUnavailable;
-            throw new ErrorAPIServiceUnavailable(response.code, response.message);
-          }
-          default:
-            throw new ErrorAPIGenericError(0 ,'The API returned an error');
-        }
-      }
-      return res.json()
-    })
 };
 
 /**
@@ -87,11 +53,12 @@ const fetchAPI = (options: fetchOptions) => {
  * @param baseurl 
  */
 export const byCoordinates = async (options: CoordinatesOptions, baseurl?: string) => {
+  const { lat, lng, rad, apikey } = { ...options, rad: 2 };
   const stations = await fetchAPI({
     path: '/stations/search',
-    apikey: options.apikey,
+    apikey: apikey,
     baseurl: baseurl,
-    query: { lat: options.lat, lng: options.lng }
+    query: { lat, lng, rad }
   }) as CoordinatesResult;
 
   return stations;

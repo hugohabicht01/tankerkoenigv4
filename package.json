@@ -2,19 +2,29 @@
   "name": "tankerkoenigv4",
   "version": "1.0.0",
   "description": "A simple wrapper around the version 4 of the creativecommons.tankerkoenig.de API for fetching real-time gas prices in Germany",
-  "main": "index.js",
+  "main": "built/index.js",
+  "types": "built/index.d.ts",
+  "files": [
+    "/built"
+  ],
+  "type": "commonjs",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest",
+    "build": "tsc",
     "refreshInterfaces": "curl https://creativecommons.tankerkoenig.de/swagger/tankerkoenig.yaml -o tankerkoenig.yaml && npx -y openapi-typescript --output schema.ts"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/jest": "^27.4.1",
+    "dotenv": "^16.0.0",
     "eslint": "^8.13.0",
+    "jest": "^27.5.1",
+    "ts-jest": "^27.1.4",
     "typescript": "^4.6.3"
   },
   "dependencies": {
     "mande": "^2.0.1",
-    "node-fetch": "^3.2.3"
+    "ohmyfetch": "^0.4.15"
   }
 }
