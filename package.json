@@ -7,6 +7,11 @@
   "files": [
     "/built"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hugohabicht01/tankerkoenigv4.git"
+  },
+  "homepage": "https://github.com/hugohabicht01/tankerkoenigv4",
   "type": "commonjs",
   "scripts": {
     "test": "NODE_OPTIONS=--experimental-vm-modules jest",
