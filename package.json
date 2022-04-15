@@ -30,7 +30,6 @@
     "typescript": "^4.6.3"
   },
   "dependencies": {
-    "mande": "^2.0.1",
     "ohmyfetch": "^0.4.15"
   }
 }

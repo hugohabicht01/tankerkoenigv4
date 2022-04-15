@@ -5,13 +5,11 @@ specifiers:
   dotenv: ^16.0.0
   eslint: ^8.13.0
   jest: ^27.5.1
-  mande: ^2.0.1
   ohmyfetch: ^0.4.15
   ts-jest: ^27.1.4
   typescript: ^4.6.3
 
 dependencies:
-  mande: 2.0.1
   ohmyfetch: 0.4.15
 
 devDependencies:
@@ -2303,10 +2301,6 @@ packages:
     dependencies:
       tmpl: 1.0.5
     dev: true
-
-  /mande/2.0.1:
-    resolution: {integrity: sha512-IkId2U/+SEDJcsdGDvE94WZXGkCT7YTQ/DMmqkF4q3lA7Od+wWbPrMRQG04ytGVOuY3AshBH3dMHRlktUXgHTg==}
-    dev: false
 
   /merge-stream/2.0.0:
     resolution: {integrity: sha512-abv/qOcuPfk3URPfDzmZU1LKmuw8kT+0nIHvKrKgFrwifol/doWcdA4ZqsWQ8ENrFKkd67Mfpo/LovbIUsbt3w==}
