@@ -41,7 +41,7 @@ import { stats } from 'tankerkoenigv4';
 
 Sample output:
 
-```json
+```javascript
 {
   E5: { count: 13455, mean: 1.972, median: 1.969 },
   E10: { count: 12837, mean: 1.917, median: 1.909 },
@@ -66,7 +66,7 @@ import { byCoordinates } from 'tankerkoenigv4';
 
 Sample output:
 
-```json
+```javascript
 [
   {
     country: 'de',
@@ -117,7 +117,7 @@ import { byIds } from 'tankerkoenigv4';
 
 Sample output:
 
-```json
+```javascript
 [
   {
     country: 'de',
@@ -151,7 +151,7 @@ import { byPostalcode } from 'tankerkoenigv4';
 
 Sample output:
 
-```json
+```javascript
 [
   {
     country: 'de',
