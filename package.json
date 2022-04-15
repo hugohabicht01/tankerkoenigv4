@@ -1,6 +1,6 @@
 {
   "name": "tankerkoenigv4",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A simple wrapper around the version 4 of the creativecommons.tankerkoenig.de API for fetching real-time gas prices in Germany",
   "main": "built/index.js",
   "types": "built/index.d.ts",
