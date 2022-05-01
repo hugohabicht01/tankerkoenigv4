@@ -422,18 +422,18 @@ export interface components {
        * @enum {string}
        */
       type:
-      | "wrongPetrolStationName"
-      | "wrongStatusOpen"
-      | "wrongStatusClosed"
-      | "wrongPriceE5"
-      | "wrongPriceE10"
-      | "wrongPriceDiesel"
-      | "wrongPetrolStationBrand"
-      | "wrongPetrolStationStreet"
-      | "wrongPetrolStationHouseNumber"
-      | "wrongPetrolStationPostcode"
-      | "wrongPetrolStationPlace"
-      | "wrongPetrolStationLocation";
+        | "wrongPetrolStationName"
+        | "wrongStatusOpen"
+        | "wrongStatusClosed"
+        | "wrongPriceE5"
+        | "wrongPriceE10"
+        | "wrongPriceDiesel"
+        | "wrongPetrolStationBrand"
+        | "wrongPetrolStationStreet"
+        | "wrongPetrolStationHouseNumber"
+        | "wrongPetrolStationPostcode"
+        | "wrongPetrolStationPlace"
+        | "wrongPetrolStationLocation";
       /** @description wrongPrice - the correct price as float. wrongPetrolLocation - correct location as LAT,LON (2 floats). Omitted for wrongStatus. For all others - corrected value */
       correction?: string;
     };
@@ -478,6 +478,6 @@ export interface components {
   };
 }
 
-export interface operations { }
+export interface operations {}
 
-export interface external { }
+export interface external {}
