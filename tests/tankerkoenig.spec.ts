@@ -1,4 +1,4 @@
-import * as tankerkoenig from '../index';
+import * as tankerkoenig from '../src/index';
 const APIKEY = process.env.TANKERKOENIG_APIKEY || '';
 
 test('stats return stats', async () => {
@@ -30,7 +30,6 @@ test('byPostalCode returns a valid response', async () => {
     postalcode: '11011',
     apikey: APIKEY
   })
-  console.log(stations);
   expect(stations).toBeDefined();
 })
 
