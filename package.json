@@ -1,27 +1,31 @@
 {
   "name": "tankerkoenigv4",
+  "type": "commonjs",
   "version": "1.0.1",
   "description": "A simple wrapper around the version 4 of the creativecommons.tankerkoenig.de API for fetching real-time gas prices in Germany",
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://github.com/hugohabicht01/tankerkoenigv4",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hugohabicht01/tankerkoenigv4.git"
+  },
   "main": "built/index.js",
   "types": "built/index.d.ts",
   "files": [
     "/built"
   ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/hugohabicht01/tankerkoenigv4.git"
-  },
-  "homepage": "https://github.com/hugohabicht01/tankerkoenigv4",
-  "type": "commonjs",
   "scripts": {
     "test": "NODE_OPTIONS=--experimental-vm-modules jest",
     "build": "tsc",
     "prepublish": "npm run build",
     "refreshInterfaces": "curl https://creativecommons.tankerkoenig.de/swagger/tankerkoenig.yaml -o tankerkoenig.yaml && npx -y openapi-typescript --output src/schema.ts"
   },
-  "author": "",
-  "license": "ISC",
+  "dependencies": {
+    "ohmyfetch": "^0.4.18"
+  },
   "devDependencies": {
+    "@antfu/eslint-config": "^0.26.1",
     "@types/jest": "^28.1.7",
     "@types/node": "^18.7.8",
     "dotenv": "^16.0.1",
@@ -29,8 +33,5 @@
     "jest": "^28.1.3",
     "ts-jest": "^28.0.8",
     "typescript": "^4.7.4"
-  },
-  "dependencies": {
-    "ohmyfetch": "^0.4.18"
   }
 }

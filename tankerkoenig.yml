@@ -1,10 +1,10 @@
-openapi: "3.0.3"
+openapi: 3.0.3
 servers:
   - url: 'https://creativecommons.tankerkoenig.de/api/v4'
 info:
   version: 4.0.6
   title: Tankerkönig API
-  description: 
+  description:
     API for getting real time gas prices from
     https:\/\/creativecommons.tankerkoenig.de. Real time gas price data is
     available under open data/open source license even for commercial use.
@@ -100,7 +100,7 @@ paths:
         - name: ids
           in: query
           required: true
-          description: 
+          description:
             Liste von Land, Tankstellen-IDs (komma-separiert) / List of country
             / station ids (comma separated).
           schema:
@@ -348,7 +348,7 @@ components:
           example: Cannstatter Straße 3
         postalCode:
           type: string
-          example: "70190"
+          example: '70190'
         place:
           type: string
           example: Stuttgart
@@ -614,7 +614,7 @@ components:
         correction:
           description: wrongPrice - the correct price as float. wrongPetrolLocation - correct location as LAT,LON (2 floats). Omitted for wrongStatus. For all others - corrected value
           type: string
-          example: ""
+          example: ''
     response-400:
       type: object
       required:
