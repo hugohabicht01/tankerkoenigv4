@@ -1,8 +1,20 @@
-import { $fetch } from 'ohmyfetch'
-import { ErrorAPIKeyMissing } from './errors'
-import type { ComplaintOptions, ComplaintResult, CoordinatesOptions, CoordinatesResult, IdsOptions, IdsResult, PostalcodeOptions, PostalcodeResult, StatsOptions, StatsResult, fetchOptions } from './types'
+import { $fetch } from "ohmyfetch";
+import { ErrorAPIKeyMissing } from "./errors";
+import type {
+  ComplaintOptions,
+  ComplaintResult,
+  CoordinatesOptions,
+  CoordinatesResult,
+  IdsOptions,
+  IdsResult,
+  PostalcodeOptions,
+  PostalcodeResult,
+  StatsOptions,
+  StatsResult,
+  fetchOptions,
+} from "./types";
 
-const BASEURL = 'https://creativecommons.tankerkoenig.de/api/v4'
+const BASEURL = "https://creativecommons.tankerkoenig.de/api/v4";
 
 /**
  * Simple fetch function to fetch the API, with some error handling
@@ -11,56 +23,49 @@ const BASEURL = 'https://creativecommons.tankerkoenig.de/api/v4'
 const fetchAPI = (options: fetchOptions) => {
   const defaults = {
     baseurl: BASEURL,
-    method: 'GET',
-  }
+    method: "GET",
+  };
 
-  let {
-    path,
-    query,
-    body,
-    baseurl,
-    apikey,
-    method,
-  } = {
+  let { path, query, body, baseurl, apikey, method } = {
     ...options,
     ...defaults,
-  }
+  };
 
-  if (!apikey)
-    throw new ErrorAPIKeyMissing()
+  if (!apikey) throw new ErrorAPIKeyMissing();
 
-  if (!query)
-    query = {}
+  if (!query) query = {};
 
-  query.apikey = apikey
+  query.apikey = apikey;
 
-  if (method === 'POST')
-    body = { ...body, apikey }
+  if (method === "POST") body = { ...body, apikey };
 
   return $fetch(path, {
     method,
     body,
     baseURL: baseurl,
     params: query,
-  })
-}
+  });
+};
 
 /**
  * Simple wrapper around the /stations/search endpoint, can be used to fetch stations around a certain location
  * @param options
  * @param baseurl
  */
-export const byCoordinates = async (options: CoordinatesOptions, baseurl?: string) => {
-  const { lat, lng, rad, apikey } = { ...options, rad: 2 }
-  const stations = await fetchAPI({
-    path: '/stations/search',
+export const byCoordinates = async (
+  options: CoordinatesOptions,
+  baseurl?: string
+) => {
+  const { lat, lng, rad, apikey } = { ...options, rad: 2 };
+  const stations = (await fetchAPI({
+    path: "/stations/search",
     apikey,
     baseurl,
     query: { lat, lng, rad },
-  }) as CoordinatesResult
+  })) as CoordinatesResult;
 
-  return stations
-}
+  return stations;
+};
 
 /**
  * Simple wrapper around the /stations/ids endpoint, can be used to fetch stations by id
@@ -68,30 +73,33 @@ export const byCoordinates = async (options: CoordinatesOptions, baseurl?: strin
  * @param baseurl
  */
 export const byIds = async (options: IdsOptions, baseurl?: string) => {
-  const ids = options.ids.join(',')
-  const stations = await fetchAPI({
-    path: '/stations/ids',
+  const ids = options.ids.join(",");
+  const stations = (await fetchAPI({
+    path: "/stations/ids",
     apikey: options.apikey,
     baseurl,
     query: { ids, lat: options.lat, lng: options.lng },
-  }) as IdsResult
-  return stations
-}
+  })) as IdsResult;
+  return stations;
+};
 
 /**
  * Simple wrapper around the /stations/postalcode endpoint, can be used to fetch stations at a certain postcode
  * @param options
  * @param baseurl
  */
-export const byPostalcode = async (options: PostalcodeOptions, baseurl?: string) => {
-  const stations = await fetchAPI({
-    path: '/stations/postalcode',
+export const byPostalcode = async (
+  options: PostalcodeOptions,
+  baseurl?: string
+) => {
+  const stations = (await fetchAPI({
+    path: "/stations/postalcode",
     apikey: options.apikey,
     baseurl,
     query: { postalcode: options.postalcode },
-  }) as PostalcodeResult
-  return stations
-}
+  })) as PostalcodeResult;
+  return stations;
+};
 
 /**
  * Simple wrapper around the /stats endpoint, can be used to fetch simple stats about current fuel prices
@@ -99,29 +107,34 @@ export const byPostalcode = async (options: PostalcodeOptions, baseurl?: string)
  * @param baseurl
  */
 export const stats = async (options: StatsOptions, baseurl?: string) => {
-  const stats = await fetchAPI({
-    path: '/stats',
+  const stats = (await fetchAPI({
+    path: "/stats",
     apikey: options.apikey,
     baseurl,
-  }) as StatsResult
-  return stats
-}
+  })) as StatsResult;
+  return stats;
+};
 
 /**
  * Simple wrapper around the /complaint endpoint, can be used to report incorrect data
  * @param options
  * @param baseurl
  */
-export const complaint = async (options: ComplaintOptions, baseurl?: string) => {
-  const { id, type, correction } = options
-  const complaint = await fetchAPI({
-    path: '/complaint',
+export const complaint = async (
+  options: ComplaintOptions,
+  baseurl?: string
+) => {
+  const { id, type, correction } = options;
+  const complaint = (await fetchAPI({
+    path: "/complaint",
     apikey: options.apikey,
     baseurl,
-    method: 'POST',
+    method: "POST",
     body: {
-      id, type, correction,
+      id,
+      type,
+      correction,
     },
-  }) as ComplaintResult
-  return complaint
-}
+  })) as ComplaintResult;
+  return complaint;
+};
