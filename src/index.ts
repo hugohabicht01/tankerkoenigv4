@@ -1,4 +1,5 @@
 import { $fetch } from 'ohmyfetch'
+import { defu } from 'defu'
 import { ErrorAPIKeyMissing } from './errors'
 import type { ComplaintOptions, ComplaintResult, CoordinatesOptions, CoordinatesResult, IdsOptions, IdsResult, PostalcodeOptions, PostalcodeResult, StatsOptions, StatsResult, fetchOptions } from './types'
 
@@ -13,10 +14,7 @@ const fetchAPI = (options: fetchOptions) => {
     baseurl: BASEURL,
     method: 'GET'
   }
-  const mergedOptions = {
-    ...options,
-    ...defaults
-  }
+  const mergedOptions = defu(options, defaults)
 
   const {
     path,
@@ -55,7 +53,7 @@ const fetchAPI = (options: fetchOptions) => {
  * @param baseurl
  */
 export const byCoordinates = async (options: CoordinatesOptions, baseurl?: string) => {
-  const { lat, lng, rad, apikey } = { ...options, rad: 2 }
+  const { lat, lng, rad, apikey } = defu(options, { rad: 2 })
   const stations = await fetchAPI({
     path: '/stations/search',
     apikey,
