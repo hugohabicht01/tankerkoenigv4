@@ -8,7 +8,7 @@
   "homepage": "https://github.com/hugohabicht01/tankerkoenigv4",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hugohabicht01/tankerkoenigv4.git"
+    "url": "https://github.com/hugohabicht01/tankerkoenigv4.git"
   },
   "main": "built/index.js",
   "types": "built/index.d.ts",
