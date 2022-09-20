@@ -14,7 +14,7 @@
   "types": "built/index.d.ts",
   "release": {
     "branches": [
-      "main"
+      "master"
     ]
   },
   "publishConfig": {
