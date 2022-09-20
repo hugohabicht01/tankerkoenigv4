@@ -12,6 +12,14 @@
   },
   "main": "built/index.js",
   "types": "built/index.d.ts",
+  "release": {
+    "branches": [
+      "main"
+    ]
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "files": [
     "/built"
   ],
@@ -19,7 +27,8 @@
     "test": "NODE_OPTIONS=--experimental-vm-modules jest",
     "build": "tsc",
     "prepublish": "npm run build",
-    "refreshInterfaces": "curl https://creativecommons.tankerkoenig.de/swagger/tankerkoenig.yaml -o tankerkoenig.yaml && npx -y openapi-typescript --output src/schema.ts"
+    "refreshInterfaces": "curl https://creativecommons.tankerkoenig.de/swagger/tankerkoenig.yaml -o tankerkoenig.yaml && npx -y openapi-typescript --output src/schema.ts",
+    "semantic-release": "semantic-release"
   },
   "dependencies": {
     "defu": "^6.1.0",
@@ -32,6 +41,7 @@
     "dotenv": "^16.0.1",
     "eslint": "^8.22.0",
     "jest": "^28.1.3",
+    "semantic-release": "^19.0.5",
     "ts-jest": "^28.0.8",
     "typescript": "^4.7.4"
   }
