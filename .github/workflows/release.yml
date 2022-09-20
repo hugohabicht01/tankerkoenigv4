@@ -28,6 +28,6 @@ jobs:
         run: pnpm install --frozen-lockfile
       - name: Release
         env:
-          GITHUB_TOKEN: ${{ secrets.PREFXI_GITHUB_SECRET }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npx semantic-release
