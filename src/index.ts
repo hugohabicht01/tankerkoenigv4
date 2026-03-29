@@ -1,4 +1,4 @@
-import { $fetch } from 'ohmyfetch'
+import { $fetch } from 'ofetch'
 import { defu } from 'defu'
 import { ErrorAPIKeyMissing } from './errors'
 import type { ComplaintOptions, ComplaintResult, CoordinatesOptions, CoordinatesResult, IdsOptions, IdsResult, PostalcodeOptions, PostalcodeResult, StatsOptions, StatsResult, fetchOptions } from './types'
